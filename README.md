@@ -36,7 +36,7 @@ Tugas
 | /login      | POST        | email - string                         | Kembalikan kode status 200 jika berhasil |
 | /review     | GET         | -                                      | Harus dapat diakses dari peran Admin saja.|    
 |-            |-            | -                                      | Kembalikan kode status 403 jika otentikasi gagal| 
-| /review     | POST        | description - string rating - integer  | Harus dapat diakses dari peran Admin saja|
+| /review     | POST        | description - string rating - integer  | Harus dapat diakses dari peran user saja|
 |-            | -           |-                                       | Kembalikan kode status 403 jika otentikasi gagal|
 
 

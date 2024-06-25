@@ -12,6 +12,11 @@ coverage = "*"
 sqlalchemy = "*"
 flask-sqlalchemy = "*"
 virtualenv = "*"
+mysql-connector-python = "*"
+flask-restful = "*"
+flask-cors = "*"
+pyjwt = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

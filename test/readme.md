@@ -1,0 +1,25 @@
+CREATE TABLE product (
+	id INTEGER PRIMARY KEY auto_increment,
+    name VARCHAR(100) NOT NULL,
+    price INTEGER NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE product_review (
+	id INTEGER PRIMARY KEY auto_increment,
+    product_id INTEGER NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    rating INTEGER NOT NULL,
+    review_content TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user (
+	id INTEGER PRIMARY KEY auto_increment,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    role VARCHAR(191) NULL DEFAULT NULL
+);

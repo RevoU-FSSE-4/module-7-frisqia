@@ -1,6 +1,7 @@
 from models.base import Base
 from sqlalchemy.orm import mapped_column, relationship
-from sqlalchemy import Integer, String
+from sqlalchemy import Integer, String, Enum
+
 import bcrypt
 
 class Product(Base):
@@ -9,7 +10,7 @@ class Product(Base):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     username = mapped_column(String(100), nullable=False)
     email = mapped_column(String(100), nullable=False)
-    role = mapped_column(String(100))
+    role = mapped_column(Enum('User', 'Admin'), default='User')
     password_hash = mapped_column(String(100), nullable=False)
 
     #Relationship List

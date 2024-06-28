@@ -7,7 +7,7 @@ from models.user import User
 from flask_login import login_user, logout_user, login_required
 from flask_jwt_extended import create_access_token
 
-
+#access token untuk memprotek endpoint yang mau di proteksi
 
 def register_user():
     Session = sessionmaker(connection)
@@ -30,6 +30,7 @@ def register_user():
     
     return { "message": "Register Success" }, 200
 
+
 def check_login():
     Session = sessionmaker(connection)
     s = Session()
@@ -49,11 +50,11 @@ def check_login():
         login_user(user)
 
         # Get Session ID
-        session_id = request.cookies.get('session')
+        session_id = request.cookies.get('session') 
 
         return {
             "session_id": session_id,
-            "message": "Login Success"
+            "message": "Login Success" #disimpan in memori tidak di seimipan di database/tabel
         }, 200
 
     except Exception as e:

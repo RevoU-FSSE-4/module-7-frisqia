@@ -10,6 +10,7 @@ from blueprint.route_user import user_bp
 import os
 
 from flask_login import LoginManager
+from flask_jwt_extended import JWTManager
 
 load_dotenv()
 
@@ -19,9 +20,13 @@ app.config['SECRET_KEY']= os.getenv('SECRET_KEY')
 app.register_blueprint(product_bp)
 app.register_blueprint(user_bp)
 
+#JSON Web Token
+jwt = JWTManager(app)
+
 # agar bisa melihat ada yg login atau tidak
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):

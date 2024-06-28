@@ -4,11 +4,16 @@ from models.product import Product
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
 
+from flask_login import current_user
+
 from flask_jwt_extended import jwt_required
 
+from decorators.role_checker import role_required
+from cerberus import Validator
+from validations.product_insert import product_insert_schema
 
 #fetch product
-
+@role_required('Admin')
 def get_product():
     Session = sessionmaker(connection)
     s = Session()
@@ -26,9 +31,20 @@ def get_product():
         return {'message':'Unexpected Error'},500
     return {'message':'Success fetch product data'},200
 
+
 #insert product
 # @jwt_required()
 def create_product():
+
+    v = Validator(product_insert_schema)
+    request_body={
+        "name":request.form['name'],
+        "price":int(request.form['price']),
+        "description":request.form['description']
+    }
+    if not v.validate(request_body):
+        return {'error':v.errors},409
+    
     Session = sessionmaker(connection)
     s = Session()
     s.begin()

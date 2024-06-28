@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.product import get_product, create_product, update_product, delete_product
+from controllers.product_controller import get_product, create_product, update_product, delete_product
 
 product_bp = Blueprint('product', __name__)
 

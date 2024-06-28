@@ -4,7 +4,7 @@ from models.product import Product
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
 
-
+#fetch product
 def get_product():
     Session = sessionmaker(connection)
     s = Session()
@@ -22,6 +22,7 @@ def get_product():
         return {'message':'Unexpected Error'},500
     return {'message':'Success fetch product data'},200
 
+#insert product
 def create_product():
     Session = sessionmaker(connection)
     s = Session()
@@ -41,6 +42,7 @@ def create_product():
 
     return { 'message': 'Success insert product data'}, 200
 
+#mengganti
 def update_product(id):
     Session = sessionmaker(connection)
     s = Session()
@@ -57,6 +59,7 @@ def update_product(id):
 
     return { 'message': 'Success Update product data'}, 200
 
+#delete product
 def delete_product(id):
     Session = sessionmaker(connection)
     s = Session()

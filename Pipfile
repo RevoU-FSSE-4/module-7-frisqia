@@ -17,6 +17,11 @@ flask-restful = "*"
 flask-cors = "*"
 pyjwt = "*"
 python-dotenv = "*"
+flask-login = "*"
+flask-jwt-extended = "*"
+bcrypt = "*"
+cerberus = "*"
+flask-migrate = "*"
 
 [dev-packages]
 

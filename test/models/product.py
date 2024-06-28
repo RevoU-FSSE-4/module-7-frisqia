@@ -12,7 +12,6 @@ class Product(Base):
     description = mapped_column(Text)
     created_at = mapped_column(DateTime(timezone=True), server_default=func.now())
 
-    # Relationship List
-    reviews = relationship("Review",cascade="all,delete-orphan")
+    #Relationship List
 
-    
+    reviews = relationship("Review", cascade="all,delete-orphan")

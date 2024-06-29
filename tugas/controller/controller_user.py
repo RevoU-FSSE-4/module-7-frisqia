@@ -4,7 +4,7 @@ from models.user import User
 from sqlalchemy.orm import sessionmaker
 
 from flask_login import login_user,logout_user, login_required
-from flask_jwt_extended import create_access_token
+
 
 #chek connection
 def chek_test():
@@ -28,6 +28,7 @@ def register_user():
       return{'message': 'Fail to Register'}, 500
    return {'message': 'Register Success'}, 200
    
+#login
 def user_login ():
    Session = sessionmaker (connection)
    s = Session()
@@ -54,32 +55,7 @@ def user_login ():
    except Exception as e:
       s.rollback()
       return {"message": "fail login"}, 500
-
-# def user_loginJWT ():
-#    Session = sessionmaker (connection)
-#    s = Session()
-#    s.begin()
-
-#    try:
-#        email = request.form ['email']
-#        username = s.query(User).filter(User.email == email).first()
-
-#        if username == None:
-#           return {"message":"User not found"},403
-       
-#        if not username.check_password(request.form['password']):
-#           return{"message":"Invalid password"},403
-       
-#        access_token = create_access_token(identity=username.id, additional_claims={'username': username.username, 'id':username.id})
-#        return{
-#           "access_token": access_token,
-#           "message":"Login Success"
-#        }, 200
    
-#    except Exception as e:
-#       s.rollback()
-#       return {"message": "fail login"}, 500
-
 @login_required
 def user_logout():
     logout_user()

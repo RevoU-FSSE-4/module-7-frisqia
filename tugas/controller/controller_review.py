@@ -3,16 +3,14 @@ from connectors.mysql_connector import connection
 from models.review import Review
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
-from functools import wraps
 
-from flask_login import login_user,logout_user, login_required, current_user
-
+from decorators.role_checker import role_required
 #chek connection
 def get_test():
    return 'test'
 
-
 #fetchiing data
+@role_required('Admin')
 def fetch_review():
     review_query = select(Review)
     Session = sessionmaker(connection)
@@ -23,7 +21,7 @@ def fetch_review():
         return "fetch sucsess"
     
 #search data
-
+@role_required('Admin')
 def search_review_data():
    Session= sessionmaker(connection)
    s= Session()
@@ -53,7 +51,7 @@ def search_review_data():
    #return {'message':'sucsess fetch review data'},200
 
 #insert data
-# @login_required
+@role_required('Admin')
 def review_insert():
    Session = sessionmaker(connection)
    s= Session()
@@ -74,7 +72,7 @@ def review_insert():
    return {'message':'success insert data'},200
 
 #update review
-# @login_required
+@role_required('Admin')
 def review_update(id):
    Session = sessionmaker(connection)
    s = Session()
@@ -94,7 +92,7 @@ def review_update(id):
    return {'message':'success update review'},200
 
 #delete data
-# @login_required
+@role_required('Admin')
 def review_delete(id):
    Session = sessionmaker(connection)
    s = Session()

@@ -13,7 +13,9 @@ class User(Base, UserMixin):
     username = mapped_column(String(100), nullable=False)
     email = mapped_column(String(100), nullable=False)
     password = mapped_column(String(100), nullable=False)
+    role= mapped_column(String(100))
 
+    
     # password yang sudah di encript
     def set_password(self, password):
         self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')

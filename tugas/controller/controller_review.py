@@ -21,6 +21,7 @@ def fetch_review():
         for row in result.scalars():
             print(f'ID: {row.id}, Description: {row.description} Email: {row.email}, Rate: {row.rating}' )
         return "fetch sucsess"
+    
 #search data
 def search_review_data():
    Session= sessionmaker(connection)

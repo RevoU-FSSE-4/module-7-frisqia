@@ -1,6 +1,6 @@
 from models.base import Base
-from sqlalchemy import Integer, String, Text, ForeignKey
-from sqlalchemy.orm import mapped_column, relationship
+from sqlalchemy import Integer, String, Text
+from sqlalchemy.orm import mapped_column
 
 
 class Review(Base):

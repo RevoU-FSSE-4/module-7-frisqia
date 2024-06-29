@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, session
 from connectors.mysql_connector import connection
 from models.user import User
 from sqlalchemy.orm import sessionmaker
@@ -46,6 +46,7 @@ def user_login ():
        
        login_user(username)
        session_id = request.cookies.get('session')
+
 
        return{
           "session_id": session_id,

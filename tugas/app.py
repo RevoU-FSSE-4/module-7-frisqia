@@ -8,7 +8,7 @@ from connectors.mysql_connector import connection
 
 from flask_login import LoginManager
 from models.user import User
-# from datetime import timedelta
+from datetime import timedelta
 
 
 import os
@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
 
 app.register_blueprint(review_bp)
 app.register_blueprint(user_bp)

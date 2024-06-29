@@ -1,4 +1,4 @@
-from flask import request, session
+from flask import request
 from connectors.mysql_connector import connection
 from models.user import User
 from sqlalchemy.orm import sessionmaker

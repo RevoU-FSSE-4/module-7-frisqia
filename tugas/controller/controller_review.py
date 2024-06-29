@@ -43,12 +43,10 @@ def search_review_data():
          print(f'ID: {row.id}, Description: {row.description} Email: {row.email}, Rate: {row.rating}' )
     return{
        'review': review,
-      #  'message': "Hello" + current_user.username
     }
    except Exception as c:
       print(c)
       return{'message':'unexpected error'}, 500
-   #return {'message':'sucsess fetch review data'},200
 
 #insert data
 @role_required('Admin')

@@ -37,29 +37,6 @@ app.register_blueprint(review_bp)
 def hello_world():
     return "Hello World"
 
-# @app.route('/insert')
-# def insert_reviews():
-#     Session = sessionmaker(connection)
-#     with Session() as s:
-#         s.execute (text("INSERT INTO reviews (description , email, rating) VALUES('sesuai deskripsi','anita@yahoo.com','5')"))
-#         s.commit()
-#     return "insert succsess"
 
-# @app.route('/insert')
-# def insert_reviews_model():
-#     NewReview = Review(description="bahannya adem", email="yana@gmail.com", rating="3")
-#     Session = sessionmaker(connection)
-#     with Session() as s:
-#         s.add(NewReview)
-#         s.commit()
-#     return "insert success"
 
-# @app.route('/fetch')
-# def fetch_query():
-    # review_query = select(Review)
-    # Session = sessionmaker(connection)
-    # with Session() as s:
-    #     result = s.execute(review_query)
-    #     for row in result.scalars():
-    #         print(f'ID: {row.id}, Description: {row.description} Email: {row.email}, Rate: {row.rating}' )
-    #     return "fetch sucsess"
+

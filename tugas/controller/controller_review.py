@@ -40,3 +40,56 @@ def search_review_data():
       print(c)
       return{'message':'unexpected error'}, 500
    return {'message':'sucsess fetch review data'},200
+
+#insert data
+def review_insert():
+   Session = sessionmaker(connection)
+   s= Session()
+   s.begin()
+   try:
+      NewReview = Review(
+         description = request.form['description'],
+         email = request.form['email'],
+         rating = request.form['rating']
+      )
+      s.add(NewReview)
+      s.commit()
+   except Exception as c:
+      s.rollback()
+      return{'message': 'fail to insert data'},500
+
+   return {'message':'success insert data'},200
+
+#update review
+def review_update(id):
+   Session = sessionmaker(connection)
+   s = Session()
+   s.begin()
+   try:
+      review = s.query(Review).filter(Review.id == id).first()
+      
+      review.description = request.form['description']
+      review.email = request.form['email']
+      review.rating = request.form['rating']
+
+      s.commit()
+   except Exception as e:
+      s.rollback()
+      return{'message':'fail to update'},500
+
+   return {'message':'success update review'},200
+
+#delete data
+def review_delete(id):
+   Session = sessionmaker(connection)
+   s = Session()
+   s.begin()
+   try:
+      review = s.query(Review).filter(Review.id == id).first()
+      s.delete(review)
+      s.commit()
+   except Exception as e:
+      s.rollback()
+      return{'message':'fail to delete'},500
+
+   return {'message':'success delete'},200

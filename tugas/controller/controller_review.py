@@ -3,16 +3,17 @@ from connectors.mysql_connector import connection
 from models.review import Review
 from sqlalchemy import select
 from sqlalchemy.orm import sessionmaker
-# from flask_login import current_user
-# from flask_jwt_extended import jwt_required
 from functools import wraps
 
+from flask_login import login_user,logout_user, login_required, current_user
 
 #chek connection
 def get_test():
    return 'test'
 
+
 #fetchiing data
+@login_required
 def fetch_review():
     review_query = select(Review)
     Session = sessionmaker(connection)
@@ -23,6 +24,7 @@ def fetch_review():
         return "fetch sucsess"
     
 #search data
+
 def search_review_data():
    Session= sessionmaker(connection)
    s= Session()
@@ -33,15 +35,26 @@ def search_review_data():
        review_query = review_query.where(Review.rating.like(f"%{search_keyword}%"))
        
     reviews = s.execute(review_query)
+    review=[]
     for row in reviews.scalars():
+         review.append({
+            'ID' : row.id,
+            'Description' : row.description,
+            'Email' : row.email,
+            'Rate': row.rating
+         })
          print(f'ID: {row.id}, Description: {row.description} Email: {row.email}, Rate: {row.rating}' )
-   
+    return{
+       'review': review,
+       'message': "Hello" + current_user.username
+    }
    except Exception as c:
       print(c)
       return{'message':'unexpected error'}, 500
-   return {'message':'sucsess fetch review data'},200
+   #return {'message':'sucsess fetch review data'},200
 
 #insert data
+@login_required
 def review_insert():
    Session = sessionmaker(connection)
    s= Session()
@@ -54,6 +67,7 @@ def review_insert():
       )
       s.add(NewReview)
       s.commit()
+      
    except Exception as c:
       s.rollback()
       return{'message': 'fail to insert data'},500
@@ -61,6 +75,7 @@ def review_insert():
    return {'message':'success insert data'},200
 
 #update review
+@login_required
 def review_update(id):
    Session = sessionmaker(connection)
    s = Session()
@@ -80,6 +95,7 @@ def review_update(id):
    return {'message':'success update review'},200
 
 #delete data
+@login_required
 def review_delete(id):
    Session = sessionmaker(connection)
    s = Session()

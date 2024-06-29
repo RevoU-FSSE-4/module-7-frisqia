@@ -10,6 +10,4 @@ class Review(Base):
     description = mapped_column(Text)
     email = mapped_column(String(30), nullable= False)
     rating = mapped_column(Integer, nullable=True)
-    product_id = mapped_column(Integer)
-    # product_id = mapped_column(Integer, ForeignKey("product.id", ondelete="CASCADE"))
    

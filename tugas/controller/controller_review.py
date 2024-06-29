@@ -13,7 +13,6 @@ def get_test():
 
 
 #fetchiing data
-@login_required
 def fetch_review():
     review_query = select(Review)
     Session = sessionmaker(connection)
@@ -46,7 +45,7 @@ def search_review_data():
          print(f'ID: {row.id}, Description: {row.description} Email: {row.email}, Rate: {row.rating}' )
     return{
        'review': review,
-       'message': "Hello" + current_user.username
+      #  'message': "Hello" + current_user.username
     }
    except Exception as c:
       print(c)
@@ -54,7 +53,7 @@ def search_review_data():
    #return {'message':'sucsess fetch review data'},200
 
 #insert data
-@login_required
+# @login_required
 def review_insert():
    Session = sessionmaker(connection)
    s= Session()
@@ -75,7 +74,7 @@ def review_insert():
    return {'message':'success insert data'},200
 
 #update review
-@login_required
+# @login_required
 def review_update(id):
    Session = sessionmaker(connection)
    s = Session()
@@ -95,7 +94,7 @@ def review_update(id):
    return {'message':'success update review'},200
 
 #delete data
-@login_required
+# @login_required
 def review_delete(id):
    Session = sessionmaker(connection)
    s = Session()
